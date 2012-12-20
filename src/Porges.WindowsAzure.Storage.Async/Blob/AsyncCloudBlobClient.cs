@@ -55,7 +55,6 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
                 cancellationToken);
         }
 
-        [Obsolete("currently broken, do not use", true)]
         private Task<ContainerResultSegment> ListContainersSegmented(string prefix, ContainerListingDetails detailsIncluded, int? maxResults, BlobContinuationToken continuationToken, BlobRequestOptions options, OperationContext operationContext, CancellationToken? cancellationToken)
         {
             return AsyncTaskUtil.RunAsyncCancellable<ContainerResultSegment>(
@@ -66,24 +65,6 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
 
         public IObservable<AsyncCloudBlobContainer> ListContainers(string prefix, ContainerListingDetails detailsIncluded, int? maxResults, BlobRequestOptions options, OperationContext operationContext)
         {
-            return Observable.Create<AsyncCloudBlobContainer>(
-            async (observer, ct) =>
-            {
-               var containerToken = new BlobContinuationToken();
-               while (containerToken != null)
-               {
-                   // this is fake async at the moment
-                   var token = containerToken;
-                   var results = await Task.Run(() => _inner.ListContainersSegmented(prefix, detailsIncluded, maxResults, token, options, operationContext));
-                   foreach (var result in results.Results)
-                   {
-                       observer.OnNext(new AsyncCloudBlobContainer(result));
-                   }
-
-                   containerToken = results.ContinuationToken;
-               }
-           });
-            /*
             return Observable.Create<AsyncCloudBlobContainer>(
             async (observer, ct) =>
             {
@@ -99,7 +80,6 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
                     containerToken = results.ContinuationToken;
                 }
             });
-            */
         }
 
 

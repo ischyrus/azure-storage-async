@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -17,6 +18,11 @@ namespace Porges.WindowsAzure.Storage.Async.Test.Integration
             return s.ToString();
         }
 
+        private static char SelectRandom(string input, Random r)
+        {
+            return input[r.Next(input.Length)];
+        }
+
         public static string GenerateUnique(string prefix = "Test")
         {
             if (prefix.Length > maxTableNameLength) throw new ArgumentException("prefix too long", "prefix");
@@ -28,7 +34,7 @@ namespace Porges.WindowsAzure.Storage.Async.Test.Integration
 
             for (int i = 0; i < maxTableNameLength - prefix.Length; ++i)
             {
-                sb.Append(ValidChars.SelectRandom(rng));
+                sb.Append(SelectRandom(ValidChars, rng));
             }
 
             return sb.ToString();
