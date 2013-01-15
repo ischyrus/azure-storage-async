@@ -9,7 +9,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
             var blob = result as ICloudBlob;
             if (blob != null)
             {
-                AsyncCloudBlobHelpers.FromICloudBlob(blob);
+                return AsyncCloudBlobHelpers.FromICloudBlob(blob);
             }
 
             var dir = result as CloudBlobDirectory;
