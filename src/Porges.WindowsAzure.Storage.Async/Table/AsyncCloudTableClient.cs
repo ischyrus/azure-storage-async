@@ -102,9 +102,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 var tableToken = new TableContinuationToken();
                 while (tableToken != null)
                 {
-                    // TODO: re-async this 
-                    var token = tableToken;
-                    var results = await Task.Run(() => _inner.ListTablesSegmented(prefix, maxResults, token, requestOptions, operationContext));
+                    var results = await ListTablesSegmented(prefix, maxResults, tableToken, requestOptions, operationContext);
                     foreach (var result in results)
                     {
                         observer.OnNext(new AsyncCloudTable(result));
