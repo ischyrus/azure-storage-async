@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
+using PureAttribute = System.Diagnostics.Contracts.PureAttribute;
 
 namespace Porges.WindowsAzure.Storage.Async.Table
 {
@@ -23,16 +24,19 @@ namespace Porges.WindowsAzure.Storage.Async.Table
 
         public Uri Uri
         {
+            [Pure] 
             get { return _inner.Uri; }
         }
 
         public string Name
         {
+            [Pure] 
             get { return _inner.Name; }
         }
 
         public AsyncCloudTableClient ServiceClient
         {
+            [Pure] 
             get { return new AsyncCloudTableClient(_inner.ServiceClient); }
         }
        

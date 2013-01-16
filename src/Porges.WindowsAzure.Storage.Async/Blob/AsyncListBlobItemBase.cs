@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace Porges.WindowsAzure.Storage.Async.Blob
@@ -13,16 +14,19 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
             Inner = item;
         }
 
+        [Pure] 
         public Uri Uri
         {
             get { return Inner.Uri; }
         }
 
+        [Pure] 
         public AsyncCloudBlobDirectory Parent
         {
             get { return new AsyncCloudBlobDirectory(Inner.Parent); }
         }
 
+        [Pure] 
         public AsyncCloudBlobContainer Container
         {
             get { return new AsyncCloudBlobContainer(Inner.Container); }

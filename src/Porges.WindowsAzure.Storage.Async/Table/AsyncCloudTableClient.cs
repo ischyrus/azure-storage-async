@@ -8,6 +8,7 @@ using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.RetryPolicies;
 using Microsoft.WindowsAzure.Storage.Shared.Protocol;
 using Microsoft.WindowsAzure.Storage.Table;
+using PureAttribute = System.Diagnostics.Contracts.PureAttribute;
 
 namespace Porges.WindowsAzure.Storage.Async.Table
 {
@@ -23,29 +24,34 @@ namespace Porges.WindowsAzure.Storage.Async.Table
 
         public TimeSpan? MaximumExecutionTime
         {
+            [Pure] 
             get { return _inner.MaximumExecutionTime; }
             set { _inner.MaximumExecutionTime = value; }
         }
 
         public Uri BaseUri
         {
+            [Pure] 
             get { return _inner.BaseUri; }
         }
 
         public TimeSpan? ServerTimeout
         {
+            [Pure] 
             get { return _inner.ServerTimeout; }
             set { _inner.ServerTimeout = value; }
         }
 
         public IRetryPolicy RetryPolicy
         {
+            [Pure] 
             get { return _inner.RetryPolicy; }
             set { _inner.RetryPolicy = value; }
         }
 
         public StorageCredentials Credentials
         {
+            [Pure] 
             get { return _inner.Credentials; }
         }
 
@@ -58,11 +64,11 @@ namespace Porges.WindowsAzure.Storage.Async.Table
         public AsyncCloudTableClient(Uri baseUri, StorageCredentials credentials) : this(new CloudTableClient(baseUri, credentials))
         { }
 
+        [Pure] 
         public AsyncCloudTable GetTableReference(string tableAddress)
         {
             return new AsyncCloudTable(_inner.GetTableReference(tableAddress));
         }
-
 
         public Task<ServiceProperties> GetServiceProperties(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
         {
@@ -82,12 +88,10 @@ namespace Porges.WindowsAzure.Storage.Async.Table
 
         private Task<TableResultSegment> ListTablesSegmented(string prefix, int? maxResults, TableContinuationToken tableToken, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
         {
-            throw new NotSupportedException("Storage API 2.0 has a bug");
-
-            //return AsyncTaskUtil.RunAsyncCancellable<TableResultSegment>(
-            //    _inner.BeginListTablesSegmented(prefix, maxResults, tableToken, requestOptions, operationContext, null, null),
-            //    _inner.EndListTablesSegmented,
-            //    cancellationToken);
+            return AsyncTaskUtil.RunAsyncCancellable<TableResultSegment>(
+                _inner.BeginListTablesSegmented(prefix, maxResults, tableToken, requestOptions, operationContext, null, null),
+                _inner.EndListTablesSegmented,
+                cancellationToken);
         }
 
         public IObservable<AsyncCloudTable> ListTables(string prefix, int? maxResults, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)

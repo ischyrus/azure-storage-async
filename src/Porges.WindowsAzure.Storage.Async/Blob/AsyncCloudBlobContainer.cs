@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using PureAttribute = System.Diagnostics.Contracts.PureAttribute;
 
 namespace Porges.WindowsAzure.Storage.Async.Blob
 {
@@ -18,6 +19,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
             _inner = container;
         }
 
+        [Pure] 
         public string Name
         {
             get { return _inner.Name; }

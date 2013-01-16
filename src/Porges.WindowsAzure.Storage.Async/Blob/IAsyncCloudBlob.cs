@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using PureAttribute = System.Diagnostics.Contracts.PureAttribute;
 
 namespace Porges.WindowsAzure.Storage.Async.Blob
 {
@@ -13,36 +14,38 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
     public interface IAsyncCloudBlob : IAsyncListBlobItem
     {
         /// <inheritdoc cref="ICloudBlob.Name" />
-        string Name { get; }
+        string Name { [Pure] get; }
 
         /// <inheritdoc cref="ICloudBlob.ServiceClient" />
-        AsyncCloudBlobClient ServiceClient { get; }
+        AsyncCloudBlobClient ServiceClient { [Pure] get; }
 
         /// <inheritdoc cref="ICloudBlob.StreamWriteSizeInBytes" />
-        int StreamWriteSizeInBytes { get; set; }
+        int StreamWriteSizeInBytes { [Pure] get; set; }
 
         /// <inheritdoc cref="ICloudBlob.StreamMinimumReadSizeInBytes" />
-        int StreamMinimumReadSizeInBytes { get; set; }
+        int StreamMinimumReadSizeInBytes { [Pure] get; set; }
 
         /// <inheritdoc cref="ICloudBlob.Properties" />
-        BlobProperties Properties { get; }
+        BlobProperties Properties { [Pure] get; }
 
         /// <inheritdoc cref="ICloudBlob.Metadata" />
-        IDictionary<string, string> Metadata { get; }
+        IDictionary<string, string> Metadata { [Pure] get; }
 
         /// <inheritdoc cref="ICloudBlob.SnapshotTime" />
-        DateTimeOffset? SnapshotTime { get; }
+        DateTimeOffset? SnapshotTime { [Pure] get; }
 
         /// <inheritdoc cref="ICloudBlob.CopyState" />
-        CopyState CopyState { get; }
+        CopyState CopyState { [Pure] get; }
 
         /// <inheritdoc cref="ICloudBlob.BlobType" />
-        BlobType BlobType { get; }
+        BlobType BlobType { [Pure] get; }
 
         /// <inheritdoc cref="ICloudBlob.GetSharedAccessSignature(Microsoft.WindowsAzure.Storage.Blob.SharedAccessBlobPolicy)" />
+        [Pure] 
         string GetSharedAccessSignature(SharedAccessBlobPolicy policy);
 
         /// <inheritdoc cref="ICloudBlob.GetSharedAccessSignature(Microsoft.WindowsAzure.Storage.Blob.SharedAccessBlobPolicy, string)" />
+        [Pure] 
         string GetSharedAccessSignature(SharedAccessBlobPolicy policy, string groupPolicyIdentifier);
 
         /// <inheritdoc cref="ICloudBlob.UploadFromStream" />

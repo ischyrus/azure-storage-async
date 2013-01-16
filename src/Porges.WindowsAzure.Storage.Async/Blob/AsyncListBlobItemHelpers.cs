@@ -1,9 +1,11 @@
-﻿using Microsoft.WindowsAzure.Storage.Blob;
+﻿using System.Diagnostics.Contracts;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace Porges.WindowsAzure.Storage.Async.Blob
 {
     public static class AsyncListBlobItemHelpers
     {
+        [Pure] 
         public static IAsyncListBlobItem FromIListBlobItem(IListBlobItem result)
         {
             var blob = result as ICloudBlob;

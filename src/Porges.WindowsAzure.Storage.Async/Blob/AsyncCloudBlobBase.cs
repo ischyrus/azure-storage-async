@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,37 +14,70 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
     {
         public AsyncCloudBlobBase(T blob) : base(blob)
         { }
-        
-        public string Name { get { return Inner.Name; } }
-        
+
+        public string Name
+        {
+            [Pure]
+            get { return Inner.Name; }
+        }
+
         public AsyncCloudBlobClient ServiceClient
         {
+            [Pure] 
             get { return new AsyncCloudBlobClient(Inner.ServiceClient); }
         }
 
         public int StreamWriteSizeInBytes
         {
+            [Pure] 
             get { return Inner.StreamWriteSizeInBytes; }
             set { Inner.StreamWriteSizeInBytes = value; }
         }
 
         public int StreamMinimumReadSizeInBytes
         {
+            [Pure] 
             get { return Inner.StreamMinimumReadSizeInBytes; }
             set { Inner.StreamMinimumReadSizeInBytes = value; }
         }
 
-        public BlobProperties Properties { get { return Inner.Properties; } }
-        public IDictionary<string, string> Metadata { get { return Inner.Metadata; } }
-        public DateTimeOffset? SnapshotTime { get { return Inner.SnapshotTime; } }
-        public CopyState CopyState { get { return Inner.CopyState; } }
-        public BlobType BlobType { get { return Inner.BlobType; } }
+        public BlobProperties Properties
+        {
+            [Pure]
+            get { return Inner.Properties; }
+        }
 
+        public IDictionary<string, string> Metadata
+        {
+            [Pure]
+            get { return Inner.Metadata; }
+        }
+
+        public DateTimeOffset? SnapshotTime
+        {
+            [Pure]
+            get { return Inner.SnapshotTime; }
+        }
+
+        public CopyState CopyState
+        {
+            [Pure]
+            get { return Inner.CopyState; }
+        }
+
+        public BlobType BlobType
+        {
+            [Pure]
+            get { return Inner.BlobType; }
+        }
+
+        [Pure] 
         public string GetSharedAccessSignature(SharedAccessBlobPolicy policy)
         {
             return Inner.GetSharedAccessSignature(policy);
         }
 
+        [Pure] 
         public string GetSharedAccessSignature(SharedAccessBlobPolicy policy, string groupPolicyIdentifier)
         {
             return Inner.GetSharedAccessSignature(policy, groupPolicyIdentifier);

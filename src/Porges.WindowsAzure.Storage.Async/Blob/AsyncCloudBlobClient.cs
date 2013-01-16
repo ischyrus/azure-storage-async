@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,10 +20,12 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
 
         public string DefaultDelimiter
         {
+            [Pure]
             get { return _inner.DefaultDelimiter; }
             set { _inner.DefaultDelimiter = value; }
         }
 
+        [Pure]
         public StorageCredentials Credentials
         {
             get { return _inner.Credentials; }
@@ -120,6 +123,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
             return AsyncCloudBlobHelpers.FromICloudBlob(blob);
         }
 
+        [Pure]
         public AsyncCloudBlobContainer GetContainerReference(string containerName)
         {
             return new AsyncCloudBlobContainer(_inner.GetContainerReference(containerName));
