@@ -17,12 +17,25 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         public AsyncCloudBlobContainer(CloudBlobContainer container)
         {
             _inner = container;
+
         }
 
         [Pure] 
         public string Name
         {
             get { return _inner.Name; }
+        }
+
+        [Pure]
+        public AsyncCloudBlockBlob GetBlockBlobReference(string blobName, DateTimeOffset? snapshotTime = null)
+        {
+            return new AsyncCloudBlockBlob(_inner.GetBlockBlobReference(blobName, snapshotTime));
+        }
+
+        [Pure]
+        public AsyncCloudPageBlob GetPageBlobReference(string blobName, DateTimeOffset? snapshotTime = null)
+        {
+            return new AsyncCloudPageBlob(_inner.GetPageBlobReference(blobName, snapshotTime));
         }
 
         public Task Create(BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
