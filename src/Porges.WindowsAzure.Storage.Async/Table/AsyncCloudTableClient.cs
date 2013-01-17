@@ -15,12 +15,24 @@ namespace Porges.WindowsAzure.Storage.Async.Table
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public class AsyncCloudTableClient
     {
-        private readonly CloudTableClient _inner;
+        [NotNull] private readonly CloudTableClient _inner;
 
-        public AsyncCloudTableClient(CloudTableClient ctc)
+        public AsyncCloudTableClient([NotNull] CloudTableClient ctc)
         {
             _inner = ctc;
         }
+
+        public AsyncCloudTableClient(CloudStorageAccount csa)
+            : this(csa.CreateCloudTableClient())
+        { }
+
+        public AsyncCloudTableClient(Uri baseUri)
+            : this(new CloudTableClient(baseUri))
+        { }
+
+        public AsyncCloudTableClient(Uri baseUri, StorageCredentials credentials)
+            : this(new CloudTableClient(baseUri, credentials))
+        { }
 
         public TimeSpan? MaximumExecutionTime
         {
@@ -54,15 +66,6 @@ namespace Porges.WindowsAzure.Storage.Async.Table
             [Pure] 
             get { return _inner.Credentials; }
         }
-
-        public AsyncCloudTableClient(CloudStorageAccount csa) : this(csa.CreateCloudTableClient())
-        { }
-
-        public AsyncCloudTableClient(Uri baseUri) : this(new CloudTableClient(baseUri))
-        { }
-
-        public AsyncCloudTableClient(Uri baseUri, StorageCredentials credentials) : this(new CloudTableClient(baseUri, credentials))
-        { }
 
         [Pure] 
         public AsyncCloudTable GetTableReference(string tableAddress)

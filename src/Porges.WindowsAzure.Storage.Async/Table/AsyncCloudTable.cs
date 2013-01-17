@@ -13,9 +13,9 @@ namespace Porges.WindowsAzure.Storage.Async.Table
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public class AsyncCloudTable
     {
-        private readonly CloudTable _inner;
+        [NotNull] private readonly CloudTable _inner;
 
-        public AsyncCloudTable(CloudTable cloudTable)
+        public AsyncCloudTable([NotNull] CloudTable cloudTable)
         {
             _inner = cloudTable;
         }
@@ -40,6 +40,13 @@ namespace Porges.WindowsAzure.Storage.Async.Table
             get { return new AsyncCloudTableClient(_inner.ServiceClient); }
         }
        
+        [Pure]
+        public string GetSharedAccessSignature(SharedAccessTablePolicy policy, string accessPolicyIdentifier, string startPartitionKey, string startRowKey, string endPartitionKey, string endRowKey)
+        {
+            return _inner.GetSharedAccessSignature(policy, accessPolicyIdentifier, startPartitionKey, startRowKey,
+                                                   endPartitionKey, endRowKey);
+        }
+
         #endregion
 
         #region Async methods

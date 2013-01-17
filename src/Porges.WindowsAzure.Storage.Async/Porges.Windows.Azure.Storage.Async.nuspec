@@ -9,7 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Initial release.</releaseNotes>
-    <copyright>Copyright © George Pollard 2012</copyright>
+    <copyright>Copyright © George Pollard 2012-2013</copyright>
     <tags>Azure Storage Async</tags>
   </metadata>
 </package>
