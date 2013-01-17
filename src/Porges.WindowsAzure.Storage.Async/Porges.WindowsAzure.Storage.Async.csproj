@@ -122,6 +122,8 @@
     <Compile Include="Blob\AsyncListBlobItemHelpers.cs" />
     <Compile Include="Blob\IAsyncCloudBlob.cs" />
     <Compile Include="Blob\IAsyncListBlobItem.cs" />
+    <Compile Include="Queue\AsyncCloudQueue.cs" />
+    <Compile Include="Queue\AsyncCloudQueueClient.cs" />
     <Compile Include="Table\AsyncCloudTable.cs" />
     <Compile Include="Table\AsyncCloudTableClient.cs" />
     <Compile Include="AsyncTaskUtil.cs" />
@@ -133,6 +135,7 @@
     </None>
     <None Include="Porges.Windows.Azure.Storage.Async.nuspec" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

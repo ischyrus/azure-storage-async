@@ -20,6 +20,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
 
         }
 
+        /// <inheritdoc cref="CloudBlobContainer.Name" />
         [Pure] 
         public string Name
         {

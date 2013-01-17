@@ -5,6 +5,12 @@ using Microsoft.WindowsAzure.Storage;
 
 namespace Porges.WindowsAzure.Storage.Async
 {
+    /// <summary>
+    /// Async helpers for Azure Storage methods.
+    /// 
+    /// <remarks>These methods are Azure Storage specific since it depends on the behaviour of cancellation
+    /// (as it catches a specific exception type).</remarks>
+    /// </summary>
     internal static class AsyncTaskUtil
     {
         /// <summary>

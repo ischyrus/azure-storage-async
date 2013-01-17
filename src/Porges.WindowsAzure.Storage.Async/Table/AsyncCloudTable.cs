@@ -134,20 +134,20 @@ namespace Porges.WindowsAzure.Storage.Async.Table
         public IObservable<T> ExecuteQuery<T>(TableQuery<T> query, TableRequestOptions requestOptions = null, OperationContext operationContext = null) where T : ITableEntity, new()
         {
             return Observable.Create<T>(
-            async (observer, ct) =>
-            {
-                var tableToken = new TableContinuationToken();
-                while (tableToken != null)
+                async (observer, ct) =>
                 {
-                    var results = await ExecuteQuerySegmented(query, tableToken, requestOptions, operationContext, ct);
-                    foreach (var result in results)
+                    var tableToken = new TableContinuationToken();
+                    while (tableToken != null)
                     {
-                        observer.OnNext(result);
-                    }
+                        var results = await ExecuteQuerySegmented(query, tableToken, requestOptions, operationContext, ct);
+                        foreach (var result in results)
+                        {
+                            observer.OnNext(result);
+                        }
 
-                    tableToken = results.ContinuationToken;
-                }
-            });
+                        tableToken = results.ContinuationToken;
+                    }
+                });
         }
         
         #endregion

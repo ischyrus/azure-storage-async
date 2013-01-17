@@ -73,7 +73,8 @@ namespace Porges.WindowsAzure.Storage.Async.Table
             return new AsyncCloudTable(_inner.GetTableReference(tableAddress));
         }
 
-        public Task<ServiceProperties> GetServiceProperties(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task<ServiceProperties> GetServiceProperties(
+            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
         {
             return AsyncTaskUtil.RunAsyncCancellable<ServiceProperties>(
                 _inner.BeginGetServiceProperties(requestOptions, operationContext, null, null),
@@ -81,7 +82,8 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        public Task SetServiceProperties(ServiceProperties properties, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task SetServiceProperties(ServiceProperties properties,
+            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 _inner.BeginSetServiceProperties(properties, requestOptions, operationContext, null, null),
@@ -89,7 +91,8 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        private Task<TableResultSegment> ListTablesSegmented(string prefix, int? maxResults, TableContinuationToken tableToken, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        private Task<TableResultSegment> ListTablesSegmented(string prefix, int? maxResults, TableContinuationToken tableToken,
+            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
         {
             return AsyncTaskUtil.RunAsyncCancellable<TableResultSegment>(
                 _inner.BeginListTablesSegmented(prefix, maxResults, tableToken, requestOptions, operationContext, null, null),
@@ -97,23 +100,24 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        public IObservable<AsyncCloudTable> ListTables(string prefix, int? maxResults, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public IObservable<AsyncCloudTable> ListTables(string prefix, int? maxResults,
+            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
         {
             return Observable.Create<AsyncCloudTable>(
-            async (observer, ct) =>
-            {
-                var tableToken = new TableContinuationToken();
-                while (tableToken != null)
+                async (observer, ct) =>
                 {
-                    var results = await ListTablesSegmented(prefix, maxResults, tableToken, requestOptions, operationContext);
-                    foreach (var result in results)
+                    var tableToken = new TableContinuationToken();
+                    while (tableToken != null)
                     {
-                        observer.OnNext(new AsyncCloudTable(result));
-                    }
+                        var results = await ListTablesSegmented(prefix, maxResults, tableToken, requestOptions, operationContext);
+                        foreach (var result in results)
+                        {
+                            observer.OnNext(new AsyncCloudTable(result));
+                        }
 
-                    tableToken = results.ContinuationToken;
-                }
-            });
+                        tableToken = results.ContinuationToken;
+                    }
+                });
         }
     }
 }
