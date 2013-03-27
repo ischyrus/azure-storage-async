@@ -16,9 +16,9 @@ namespace Porges.WindowsAzure.Storage.Async
         /// <summary>
         /// Runs a cancellable query as if it was a task.
         /// </summary>
-        public static Task<T> RunAsyncCancellable<T>(ICancellableAsyncResult result, Func<IAsyncResult, T> completer, CancellationToken? ct)
+        public static Task<T> RunAsyncCancellable<T>(ICancellableAsyncResult result, Func<IAsyncResult, T> completer, CancellationToken ct)
         {
-            if (ct.HasValue) ct.Value.Register(result.Cancel);
+            ct.Register(result.Cancel);
             return Task.Factory.FromAsync(result, r =>
             {
                 try
@@ -27,7 +27,7 @@ namespace Porges.WindowsAzure.Storage.Async
                 }
                 catch (StorageException)
                 {
-                    if (ct.HasValue) ct.Value.ThrowIfCancellationRequested();
+                    ct.ThrowIfCancellationRequested();
 
                     throw;
                 }
@@ -37,9 +37,9 @@ namespace Porges.WindowsAzure.Storage.Async
         /// <summary>
         /// Runs a cancellable operation as if it was a task.
         /// </summary>
-        public static Task RunAsyncCancellable(ICancellableAsyncResult result, Action<IAsyncResult> completer, CancellationToken? ct)
+        public static Task RunAsyncCancellable(ICancellableAsyncResult result, Action<IAsyncResult> completer, CancellationToken ct)
         {
-            if (ct.HasValue) ct.Value.Register(result.Cancel);
+            ct.Register(result.Cancel);
             return Task.Factory.FromAsync(result, r =>
             {
                 try
@@ -48,7 +48,7 @@ namespace Porges.WindowsAzure.Storage.Async
                 }
                 catch (StorageException)
                 {
-                    if (ct.HasValue) ct.Value.ThrowIfCancellationRequested();
+                    ct.ThrowIfCancellationRequested();
 
                     throw;
                 }

@@ -53,106 +53,106 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
             AccessCondition accessCondition = null,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.DownloadToStream" />
         Task DownloadToStream(Stream target,
             AccessCondition accessCondition = null,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.DownloadRangeToStream" />
         Task DownloadRangeToStream(Stream target, long? offset, long? length,
             AccessCondition accessCondition = null,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.Exists" />
         Task<bool> Exists(
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.FetchAttributes" />
         Task FetchAttributes(
             AccessCondition accessCondition = null,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.SetMetadata" />
         Task SetMetadata(
             AccessCondition accessCondition = null,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.SetProperties" />
         Task SetProperties(
             AccessCondition accessCondition = null,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.StartCopyFromBlob" />
         Task<string> StartCopyFromBlob(Uri source, AccessCondition sourceAccessCondition, AccessCondition destAccessCondition,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.AbortCopy" />
         Task AbortCopy(string copyId,
             AccessCondition accessCondition = null,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.AcquireLease" />
         Task<string> AcquireLease(TimeSpan? timespan, string proposedLeaseId,
             AccessCondition accessCondition = null,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.BreakLease" />
         Task<TimeSpan> BreakLease(TimeSpan? breakPeriod = null,
             AccessCondition accessCondition = null,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.RenewLease" />
         Task RenewLease(AccessCondition accessCondition,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.ChangeLease" />
         Task<string> ChangeLease(string proposedLeaseId, AccessCondition accessCondition,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.ReleaseLease" />
         Task ReleaseLease(AccessCondition accessCondition,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.Delete" />
         Task Delete(DeleteSnapshotsOption deleteSnapshotsOption = DeleteSnapshotsOption.None,
             AccessCondition accessCondition = null,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
 
         /// <inheritdoc cref="ICloudBlob.DeleteIfExists" />
         Task<bool> DeleteIfExists(DeleteSnapshotsOption deleteSnapshotsOption = DeleteSnapshotsOption.None,
             AccessCondition accessCondition = null,
             BlobRequestOptions requestOptions = null,
             OperationContext operationContext = null,
-            CancellationToken? cancellationToken = null);
+            CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -84,7 +84,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task UploadFromStream(Stream source, AccessCondition accessCondition = null, BlobRequestOptions requestOptions = null,
-                                     OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+                                     OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginUploadFromStream(source, accessCondition, requestOptions, operationContext, null, null),
@@ -93,7 +93,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task DownloadToStream(Stream target, AccessCondition accessCondition = null, BlobRequestOptions requestOptions = null,
-                                     OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+                                     OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginDownloadToStream(target, accessCondition, requestOptions, operationContext, null, null),
@@ -103,7 +103,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
 
         public Task DownloadRangeToStream(Stream target, long? offset, long? length, AccessCondition accessCondition = null,
                                           BlobRequestOptions requestOptions = null, OperationContext operationContext = null,
-                                          CancellationToken? cancellationToken = null)
+                                          CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginDownloadRangeToStream(target, offset, length, accessCondition, requestOptions, operationContext, null, null),
@@ -112,7 +112,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task<bool> Exists(BlobRequestOptions requestOptions = null, OperationContext operationContext = null,
-                                 CancellationToken? cancellationToken = null)
+                                 CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<bool>(
                 Inner.BeginExists(requestOptions, operationContext, null, null),
@@ -121,7 +121,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task FetchAttributes(AccessCondition accessCondition = null, BlobRequestOptions requestOptions = null,
-                                    OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+                                    OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginFetchAttributes(accessCondition, requestOptions, operationContext, null, null),
@@ -131,7 +131,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
 
 
         public Task SetMetadata(AccessCondition accessCondition = null, BlobRequestOptions requestOptions = null,
-                                OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+                                OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginSetMetadata(accessCondition, requestOptions, operationContext, null, null),
@@ -140,7 +140,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task SetProperties(AccessCondition accessCondition = null, BlobRequestOptions requestOptions = null,
-                                  OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+                                  OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginSetProperties(accessCondition, requestOptions, operationContext, null, null),
@@ -149,7 +149,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task<string> StartCopyFromBlob(Uri source, AccessCondition sourceAccessCondition, AccessCondition destAccessCondition, BlobRequestOptions requestOptions = null,
-                                              OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+                                              OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<string>(
                 Inner.BeginStartCopyFromBlob(source, sourceAccessCondition, destAccessCondition, requestOptions, operationContext, null, null),
@@ -158,7 +158,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task AbortCopy(string copyId, AccessCondition accessCondition = null, BlobRequestOptions requestOptions = null,
-                              OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+                              OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginAbortCopy(copyId, accessCondition, requestOptions, operationContext, null, null),
@@ -168,7 +168,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
 
         public Task<string> AcquireLease(TimeSpan? timespan, string proposedLeaseId, AccessCondition accessCondition = null,
                                          BlobRequestOptions requestOptions = null, OperationContext operationContext = null,
-                                         CancellationToken? cancellationToken = null)
+                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<string>(
                 Inner.BeginAcquireLease(timespan, proposedLeaseId, accessCondition, requestOptions, operationContext, null, null),
@@ -178,7 +178,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
 
         public Task<TimeSpan> BreakLease(TimeSpan? breakPeriod = null, AccessCondition accessCondition = null,
                                          BlobRequestOptions requestOptions = null, OperationContext operationContext = null,
-                                         CancellationToken? cancellationToken = null)
+                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<TimeSpan>(
                 Inner.BeginBreakLease(breakPeriod, accessCondition, requestOptions, operationContext, null, null),
@@ -187,7 +187,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task RenewLease(AccessCondition accessCondition, BlobRequestOptions requestOptions = null,
-                               OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+                               OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginRenewLease(accessCondition, requestOptions, operationContext, null, null),
@@ -196,7 +196,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task<string> ChangeLease(string proposedLeaseId, AccessCondition accessCondition, BlobRequestOptions requestOptions = null,
-                                        OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+                                        OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<string>(
                 Inner.BeginChangeLease(proposedLeaseId, accessCondition, requestOptions, operationContext, null, null),
@@ -205,7 +205,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task ReleaseLease(AccessCondition accessCondition, BlobRequestOptions requestOptions = null,
-                                 OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+                                 OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginReleaseLease(accessCondition, requestOptions, operationContext, null, null),
@@ -216,7 +216,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
 
         public Task Delete(DeleteSnapshotsOption deleteSnapshotsOption = DeleteSnapshotsOption.None, AccessCondition accessCondition = null,
                            BlobRequestOptions requestOptions = null, OperationContext operationContext = null,
-                           CancellationToken? cancellationToken = null)
+                           CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginDelete(deleteSnapshotsOption, accessCondition, requestOptions, operationContext, null, null),
@@ -226,7 +226,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
 
         public Task<bool> DeleteIfExists(DeleteSnapshotsOption deleteSnapshotsOption = DeleteSnapshotsOption.None, AccessCondition accessCondition = null,
                                          BlobRequestOptions requestOptions = null, OperationContext operationContext = null,
-                                         CancellationToken? cancellationToken = null)
+                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<bool>(
                 Inner.BeginDeleteIfExists(deleteSnapshotsOption, accessCondition, requestOptions, operationContext, null, null),

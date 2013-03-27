@@ -39,28 +39,28 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
             return new AsyncCloudPageBlob(_inner.GetPageBlobReference(blobName, snapshotTime));
         }
 
-        public Task Create(BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task Create(BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(_inner.BeginCreate(options, operationContext, null, null), _inner.EndCreate, cancellationToken);
         }
 
-        public Task Delete(AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task Delete(AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(_inner.BeginDelete(accessCondition, options, operationContext, null, null), _inner.EndDelete, cancellationToken);
         }
 
-        public Task<bool> CreateIfNotExists(BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task<bool> CreateIfNotExists(BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<bool>(_inner.BeginCreateIfNotExists(options, operationContext, null, null), _inner.EndCreateIfNotExists, cancellationToken);
         }
 
-        public Task<bool> DeleteIfExists(AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task<bool> DeleteIfExists(AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<bool>(_inner.BeginDeleteIfExists(accessCondition, options, operationContext, null, null), _inner.EndDeleteIfExists, cancellationToken);
         }
 
 
-        private Task<BlobResultSegment> ListBlobsSegmented(string prefix, bool useFlatBlobListing, BlobListingDetails blobListingDetails, int? maxResults, BlobContinuationToken continuationToken, BlobRequestOptions options, OperationContext operationContext, CancellationToken? cancellationToken)
+        private Task<BlobResultSegment> ListBlobsSegmented(string prefix, bool useFlatBlobListing, BlobListingDetails blobListingDetails, int? maxResults, BlobContinuationToken continuationToken, BlobRequestOptions options, OperationContext operationContext, CancellationToken cancellationToken)
         {
             return AsyncTaskUtil.RunAsyncCancellable<BlobResultSegment>(
                 _inner.BeginListBlobsSegmented(prefix, useFlatBlobListing, blobListingDetails, maxResults, continuationToken, options, operationContext, null, null),

@@ -74,7 +74,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
         }
 
         public Task<ServiceProperties> GetServiceProperties(
-            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<ServiceProperties>(
                 _inner.BeginGetServiceProperties(requestOptions, operationContext, null, null),
@@ -83,7 +83,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
         }
 
         public Task SetServiceProperties(ServiceProperties properties,
-            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 _inner.BeginSetServiceProperties(properties, requestOptions, operationContext, null, null),
@@ -92,7 +92,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
         }
 
         private Task<TableResultSegment> ListTablesSegmented(string prefix, int? maxResults, TableContinuationToken tableToken,
-            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<TableResultSegment>(
                 _inner.BeginListTablesSegmented(prefix, maxResults, tableToken, requestOptions, operationContext, null, null),
@@ -101,7 +101,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
         }
 
         public IObservable<AsyncCloudTable> ListTables(string prefix, int? maxResults,
-            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+            TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return Observable.Create<AsyncCloudTable>(
                 async (observer, ct) =>

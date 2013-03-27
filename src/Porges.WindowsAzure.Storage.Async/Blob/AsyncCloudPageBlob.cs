@@ -12,7 +12,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         { }
 
         public Task ClearPages(long startOffset, long length,
-            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginClearPages(startOffset, length, accessCondition, options, operationContext, null, null),
@@ -21,7 +21,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task Resize(long size,
-            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginResize(size, accessCondition, options, operationContext, null, null),
@@ -31,7 +31,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
 
 
         public Task WritePages(Stream pageData, long startOffset, string contentMD5 = null,
-            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginWritePages(pageData, startOffset, contentMD5, accessCondition, options, operationContext, null, null),

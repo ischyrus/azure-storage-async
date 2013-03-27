@@ -14,7 +14,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task<IEnumerable<ListBlockItem>> DownloadBlockList(BlockListingFilter blockListingFilter,
-            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<IEnumerable<ListBlockItem>>(
                 Inner.BeginDownloadBlockList(blockListingFilter, accessCondition, options, operationContext, null, null),
@@ -23,7 +23,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task PutBlock(string blockId, Stream blockData, string contentMD5 = null,
-            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginPutBlock(blockId, blockData, contentMD5, accessCondition, options, operationContext, null, null),
@@ -32,7 +32,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         }
 
         public Task PutBlockList(IEnumerable<string> blockList,
-            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+            AccessCondition accessCondition = null, BlobRequestOptions options = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 Inner.BeginPutBlockList(blockList, accessCondition, options, operationContext, null, null),

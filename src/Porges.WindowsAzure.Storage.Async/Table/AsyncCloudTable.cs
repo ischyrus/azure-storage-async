@@ -51,7 +51,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
 
         #region Async methods
 
-        public Task Create(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task Create(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 _inner.BeginCreate(requestOptions, operationContext, null, null),
@@ -59,7 +59,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        public Task<bool> CreateIfNotExists(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task<bool> CreateIfNotExists(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<bool>(
                 _inner.BeginCreateIfNotExists(requestOptions, operationContext, null, null),
@@ -67,7 +67,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        public Task Delete(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task Delete(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 _inner.BeginDelete(requestOptions, operationContext, null, null),
@@ -75,7 +75,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        public Task<bool> DeleteIfExists(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task<bool> DeleteIfExists(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<bool>(
                 _inner.BeginDeleteIfExists(requestOptions, operationContext, null, null),
@@ -83,7 +83,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        public Task<bool> Exists(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task<bool> Exists(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<bool>(
                 _inner.BeginExists(requestOptions, operationContext, null, null),
@@ -91,7 +91,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        public Task<TablePermissions> GetPermissions(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task<TablePermissions> GetPermissions(TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<TablePermissions>(
                 _inner.BeginGetPermissions(requestOptions, operationContext, null, null),
@@ -99,7 +99,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        public Task SetPermissions(TablePermissions permissions, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task SetPermissions(TablePermissions permissions, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 _inner.BeginSetPermissions(permissions, requestOptions, operationContext, null, null),
@@ -107,7 +107,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        public Task<TableResult> Execute(TableOperation operation, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task<TableResult> Execute(TableOperation operation, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<TableResult>(
                 _inner.BeginExecute(operation, requestOptions, operationContext, null, null),
@@ -115,7 +115,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        public Task<IList<TableResult>> ExecuteBatch(TableBatchOperation operation, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task<IList<TableResult>> ExecuteBatch(TableBatchOperation operation, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<IList<TableResult>>(
                 _inner.BeginExecuteBatch(operation, requestOptions, operationContext, null, null),
@@ -123,7 +123,7 @@ namespace Porges.WindowsAzure.Storage.Async.Table
                 cancellationToken);
         }
 
-        private Task<TableQuerySegment<T>> ExecuteQuerySegmented<T>(TableQuery<T> query, TableContinuationToken token, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null) where T : ITableEntity, new()
+        private Task<TableQuerySegment<T>> ExecuteQuerySegmented<T>(TableQuery<T> query, TableContinuationToken token, TableRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken)) where T : ITableEntity, new()
         {
             return AsyncTaskUtil.RunAsyncCancellable<TableQuerySegment<T>>(
                 _inner.BeginExecuteQuerySegmented(query, token, requestOptions, operationContext, null, null),

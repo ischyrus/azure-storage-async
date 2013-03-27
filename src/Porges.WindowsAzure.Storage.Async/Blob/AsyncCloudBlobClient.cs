@@ -39,7 +39,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
         public AsyncCloudBlobClient(Uri baseUri, StorageCredentials credentials) : this(new CloudBlobClient(baseUri, credentials))
         { }
 
-        public Task<ServiceProperties> GetServiceProperties(BlobRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task<ServiceProperties> GetServiceProperties(BlobRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<ServiceProperties>(
                 _inner.BeginGetServiceProperties(requestOptions, operationContext, null, null),
@@ -47,7 +47,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
                 cancellationToken);
         }
 
-        public Task SetServiceProperties(ServiceProperties properties, BlobRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public Task SetServiceProperties(ServiceProperties properties, BlobRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable(
                 _inner.BeginSetServiceProperties(properties, requestOptions, operationContext, null, null),
@@ -55,7 +55,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
                 cancellationToken);
         }
 
-        private Task<ContainerResultSegment> ListContainersSegmented(string prefix, ContainerListingDetails detailsIncluded, int? maxResults, BlobContinuationToken continuationToken, BlobRequestOptions options, OperationContext operationContext, CancellationToken? cancellationToken)
+        private Task<ContainerResultSegment> ListContainersSegmented(string prefix, ContainerListingDetails detailsIncluded, int? maxResults, BlobContinuationToken continuationToken, BlobRequestOptions options, OperationContext operationContext, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<ContainerResultSegment>(
                 _inner.BeginListContainersSegmented(prefix, detailsIncluded, maxResults, continuationToken, options, operationContext, null, null),
@@ -81,8 +81,8 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
                 }
             });
         }
-        
-        private Task<BlobResultSegment> ListBlobsSegmented(string prefix, bool useFlatBlobListing, BlobListingDetails blobListingDetails, int? maxResults, BlobContinuationToken continuationToken, BlobRequestOptions options, OperationContext operationContext, CancellationToken? cancellationToken)
+
+        private Task<BlobResultSegment> ListBlobsSegmented(string prefix, bool useFlatBlobListing, BlobListingDetails blobListingDetails, int? maxResults, BlobContinuationToken continuationToken, BlobRequestOptions options, OperationContext operationContext, CancellationToken cancellationToken = default(CancellationToken))
         {
             return AsyncTaskUtil.RunAsyncCancellable<BlobResultSegment>(
                 _inner.BeginListBlobsSegmented(prefix, useFlatBlobListing, blobListingDetails, maxResults, continuationToken, options, operationContext, null, null),
@@ -109,7 +109,7 @@ namespace Porges.WindowsAzure.Storage.Async.Blob
             });
         }
 
-        public async Task<IAsyncCloudBlob> GetBlobReferenceFromServer(Uri blobUri, AccessCondition accessCondition = null, BlobRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken? cancellationToken = null)
+        public async Task<IAsyncCloudBlob> GetBlobReferenceFromServer(Uri blobUri, AccessCondition accessCondition = null, BlobRequestOptions requestOptions = null, OperationContext operationContext = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             var blob = await AsyncTaskUtil.RunAsyncCancellable<ICloudBlob>(
                 _inner.BeginGetBlobReferenceFromServer(blobUri, accessCondition, requestOptions, operationContext, null, null),
