@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.WindowsAzure.Storage;
@@ -38,33 +39,33 @@ namespace Porges.WindowsAzure.Storage.Async.Queue
 
         public Uri BaseUri
         {
-            [Pure]
+            [System.Diagnostics.Contracts.Pure]
             get { return _inner.BaseUri; }
         }
 
         public StorageCredentials Credentials
         {
-            [Pure]
+            [System.Diagnostics.Contracts.Pure]
             get { return _inner.Credentials; }
         }
 
         public IRetryPolicy RetryPolicy
         {
-            [Pure]
+            [System.Diagnostics.Contracts.Pure]
             get { return _inner.RetryPolicy; }
             set { _inner.RetryPolicy = value; }
         }
 
         public TimeSpan? MaximumExecutionTime
         {
-            [Pure]
+            [System.Diagnostics.Contracts.Pure]
             get { return _inner.MaximumExecutionTime; }
             set { _inner.MaximumExecutionTime = value; }
         }
 
         public TimeSpan? ServerTimeout
         {
-            [Pure]
+            [System.Diagnostics.Contracts.Pure]
             get { return _inner.ServerTimeout; }
             set { _inner.ServerTimeout = value; }
         }
